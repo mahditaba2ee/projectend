@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    category
+{% endblock %}
+
+  
+  
+{% block body %}
+<div  class="container">
+  <div class="row">
+    <p id="message" class="alert alert-info" hidden ></p>
+{% for company in companies %}
+<table dir="rtl" class=" mt-2 table table-dark table-striped">
+
+    <thead>
+      <tr>
+        <th scope="col">{{order.user}}</th>
+        <th scope="col">نام شرکت</th>
+        <th scope="col">کاربر</th>
+        <th scope="col"> کارت ملی</th>
+        <th scope="col"> بروانه کسب </th>
+        <th scope="col">  وضعیت </th>
+
+        
+
+       
+
+        
+
+
+      </tr>
+    </thead>
+    <tbody>
+        
+     
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{company.name}}</td>
+        <th scope="row">{{company.user.username}}</th>
+        <td><a data-id="{{username}}" href="{{company.national_card}}" >نمایش</a> </td>
+        <td><a data-id="{{username}}" href="{{company.business_license}}" >نمایش</a> </td>
+        <td>
+          <input value="تایید" class="btn btn-primary" type="button" onclick="company_verify(this)" data-id="{{company.id}}" >
+        </td>
+        
+        
+       
+            
+             
+            
+       
+        
+      </tr>
+      
+      <tr>
+        <td >قیمت کل</td>
+      
+        <td colspan="3"></td>
+        <td>{{orders.total_price}}</td>
+        <td>
+        <input data-id="{{orders.id}}" value="تایید" onclick="btnsubmit(this)" class="btn btn-primary" type="button" value="" id="flexCheckDefault">
+        <input data-id="{{orders.id}}" value="برگشت" onclick="btnback(this)" class="btn btn-primary" type="button" value="" id="flexCheckDefault">
+        </td>
+        
+
+
+      </tr>
+      <tr>
+        <td > مشخصات </td>
+      
+        <td colspan="2">{{orders.address}}</td>
+        <td>{{orders.name}} {{orders.family}}</td>
+        <td>{{orders.family}}</td>
+        <td>{{orders.phone}} </td>
+        
+
+    
+      </tr>
+      
+     
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+{% endfor %}
+  </div>
+</div>
+{% endblock %}
+{{company.user}}
+    <img src="{{company.national_card}}" alt="">
+
+
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="/static/accounts/js/company_verify.js"></script>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css'%}" >
+{% endblock %}
+{% block title %}
+    user login
+{% endblock %}
+{% block body %}
+
+      
+        <div class="box" id="box-form">
+            <h1>ورود</h1>
+            <form accept="" method="post">
+
+            <div class="mb-3">
+                <div for="exampleInputEmail1"class="form-text mb-2">ایمیل:</div>
+                <input   onchange="ch()" type="email" value="{{request.user.email}}" placeholder="example.gmail.com" dir="ltr" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                {% for err in form.errors %}
+                    {% if err == 'email'%}
+                        <p class="form-text mb-2">ایمیل مشکل دارد یا وارد نشده است</p>
+                    {% endif %}
+                {% endfor %}
+
+                <div id="emailHelp" class="form-text">ایمیل شما باید یگانه باشد </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-text mb-2">شماره تماس:</label>
+                <input value="{{user.phone}}" onchange="phonechanche()" type="text" class="form-control " dir="ltr" placeholder="09121234567" name="phone" id="phone">
+                <div id="phonehelp" class="form-text">شماره تلفن را به صورت که در کادر راهنمایی شده وارد نمایید</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-text mb-2">نام کاربری :</label>
+                <input value="{{user.username}}" onchange="usernamechange()" type="text" class="form-control" dir="ltr" placeholder="username" name="username" id="username">
+                <div id="usernamehelp" class="form-text">نام کاربری باید متشکل از 5 حرف لاتین باشد </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-text mb-2">نام:</label>
+                <input value="{{user.name}}" type="text" class="form-control" dir="ltr" placeholder="" name="name" id="name">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-text mb-2">نام خاودکی:</label>
+                <input value="{{user.family}}" type="text" class="form-control" dir="ltr" placeholder="" name="family" id="family">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-text mb-2">ادرس:</label>
+                <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3">{{user.address}}</textarea>
+            </div>
+            {% csrf_token %}
+                
+                    <div class="mx-auto m-2 col-md-12 text-center" >
+                     <input  type="submit"  class="col-md-10 btn btn-secondary mb-2" value="ثبت نام"> 
+                  
+                    <a class="col-md-5 btn btn-light" href="#">پاک کردن</a>
+                 
+                  
+                    <a class="col-md-5 btn btn-light" href="#">بازگشت</a>
+                  
+           
+            </div>
+            
+        </form>
+    </div>
+
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/accounts/js/register.js" ></script>
+
+{% endblock %}

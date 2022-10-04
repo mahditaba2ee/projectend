@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    category
+{% endblock %}
+{% block css %}
+<link href="{% static 'category/css/addproduct.css' %}" rel="stylesheet" >
+
+{% endblock %}
+  
+    {% block body %} 
+    <div class="container">
+        <div class="row">
+          
+            <form  method="post" action="" enctype="multipart/form-data" class="frm col-md-4 shadow mt-5 mx-auto">
+             
+            
+                
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-text mb-2">نام محصول :</label>
+                    <input    type="text" class="form-control" dir="rtl" placeholder="لب تاپ ایسوس" name="name" id="name">
+                </div>
+                <div class="mb-3">
+                    <select name="category" onchange="ch(value)" id="select"   dir="ltr" class="form-select" aria-label="Default select example">
+                        <option  >انتخاب نوع محصول</option>
+                        <option  id="category" value="add" >افزودن</option>
+
+                        {% for cat in category %}
+                            <option data-id="{{cat.id}}" id="category" value="{{cat}}" >{{cat}}</option>
+
+                        {% endfor %}
+                    
+                        
+                    </select>
+                      
+                </div>
+                <div class="mb-3">
+                    <select  onchange="changetype(value)" id="type"   dir="ltr" class="form-select" aria-label="Default select example">
+                        <option selected >انتخاب نوع </option>
+
+                    </select>
+                    <div id="addtype" style="display: none;"  class="mt-1 add-brand">
+                        <input id="type-name" class="form-control" type="text">
+                        <input onclick="send(this)" data-kind="type" class="btn btn-primary mt-1" type="button" value="افزوذن">
+
+                    </div>
+                      
+                </div>
+
+                <div class="mb-3">
+                    <select name="brand" id="option" onchange="changebreand(value)"  dir="ltr" class="form-select" aria-label="Default select example">
+                        <option   selected>انتخاب نوع برند</option>
+                    </select>
+                    <div id="addbrand" style="display: none;"  class="mt-1 add-brand">
+                        <input id="brand-name" class="form-control" type="text">
+                        <input onclick="send(this)" data-kind="category" class="btn btn-primary mt-1" type="button" value="افزوذن">
+
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label  for="exampleInputPassword1" class="form-text mb-2">توضیحات</label>
+                    <input aria-label="With textarea"  type="text" class="form-control" dir="ltr" placeholder="" name="des" id="des">
+                </div>
+                <div class="mb-3">
+                    <label  for="exampleInputPassword1" class="form-text mb-2">قیمت</label>
+                    <input aria-label="With textarea"  type="text" class="form-control" dir="ltr" placeholder="" name="price" id="price">
+                </div>
+                <div class="mb-3">
+                    <label  for="" class="form-text mb-2">عکس</label>
+                    <input  type="file" multiple class="form-control" dir="ltr" placeholder="" name="images[]">
+                </div>
+                
+                <div class="form-check" dir="ltr">
+                    <input    class="form-check-input mt-1" type="checkbox" value="0" id="check">
+                    <label class="form-text " >کالا موجود است</label>
+                </div>
+              
+                  
+               
+                {% csrf_token %}
+                    
+                        <div class="mx-auto m-2 col-md-12 text-center" >
+                         <button type="submit"  class="col-md-12 btn btn-secondary mb-2">ثبت آگهی</button>
+                      
+                        
+                     
+                      
+                        <a id="delete" onclick="delete1()" class="col-md-12 btn mb-2 btn-light" href="#">پاک کردن</a>
+                        
+                       
+                      
+               
+            </form>
+        </div>
+    
+        </div>
+    {% endblock %}
+
+
+
+
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script>
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+    
+
+function csrfSafeMethod(method) {
+// these HTTP methods do not require CSRF protection
+return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+beforeSend: function(xhr, settings) {
+    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken",csrftoken);
+    }
+}
+});
+
+
+var selected = document.getElementById('select')
+var type = document.getElementById('type')
+var selectElement = document.getElementById('option');
+var t = 0
+
+    function ch(value){
+        if(value=='add'){
+            window.location='/category/addcategory'
+        }
+        else{
+        while(selectElement.hasChildNodes()){
+            selectElement.removeChild(selectElement.firstChild);
+        }
+        while(type.hasChildNodes()){
+            type.removeChild(type.firstChild);
+        }
+        selectElement.add(new Option('انتخاب نوع برند'));
+
+        
+
+        $.post('{% url "category:choise" %}',{
+            
+            value : selected.value,
+            
+            },function(data){
+                console.log(data['status'].length)
+                selectElement.add(new Option('افزودن','add'))
+                for (var len = 0; len < data['status'].length; len++) {
+                selectElement.add(new Option(data['status'][len]));
+            }
+            type.add(new Option('انتخاب نوع'))
+
+            type.add(new Option('افزودن','add'))
+
+            for (var len = 0; len < data['mylst2'].length; len++) {
+                type.add(new Option(data['mylst2'][len]));
+            }
+                
+                }
+                )
+            }
+    }
+
+function changetype(value){
+    if(value=='add'){
+        var addtype =document.getElementById('addtype')
+        addtype.style.display='block'
+    }
+
+    else{
+        document.getElementById('addtype').style.display='none'
+
+    }
+}
+        
+function changebreand(value){
+    if (value=='add'){
+        alert()
+        document.getElementById('addbrand').style.display='block'
+      
+    }
+    else{
+        document.getElementById('addbrand').style.display='none'
+
+    }
+    
+
+}
+
+function send(btn){
+    if(btn.dataset.kind=='category'){
+    $.post('/category/addbrand',{
+        name_brand:document.getElementById('brand-name').value,
+            category:selected.value,
+        },
+        function(data){
+            console.log(data['name'])
+            if (data['status']=='ok'){
+                document.getElementById('addbrand').style.display='none'
+                selectElement.add(new Option(document.getElementById('brand-name').value));
+
+
+            }
+        }
+        )}
+    if(btn.dataset.kind=='type'){
+        $.post('/category/addtype',{
+            name_type:document.getElementById('type-name').value,
+            category:selected.value,
+        },function(data){
+            if(data['status']=='ok'){
+                document.getElementById('addtype').style.display='none'
+                type.add(new Option(document.getElementById('type-name').value));
+
+            }
+        })
+    }
+}
+</script>
+
+
+{% endblock %}

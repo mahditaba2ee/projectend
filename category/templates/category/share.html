@@ -1,0 +1,8 @@
+
+    <input dir="ltr" placeholder="search" type="text" class="form-control">
+    {% for user in users %}
+  <div class="body-share">
+    <h5>{{user.username}}</h5>
+    <h6>{{user.name}}</h6>
+  </div>
+  {% endfor %}

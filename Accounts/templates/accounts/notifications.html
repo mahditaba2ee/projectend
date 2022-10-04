@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    category
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'accounts/css/notifications.css'%}" >
+{% endblock %}
+  
+{% block body %}
+<div style="position: relative; top: 100px;" class="container">
+    <div class="row">
+        
+        
+        {% for comment in comments %}
+        <div class="body-commet">
+            <a href="{{comment.comment.product.get_absoulut_url}}"> 
+                <p dir="ltr" class="alert alert-primary new">{{comment.body}}</p>
+            </a>
+            <span class="">جدید</span>
+        </div>
+        {% endfor %}
+        <br>
+        <br>
+
+        <hr>
+        <hr>
+        {% for comment in comments_view %}
+            <div class="body-commet">
+                <a href="{{comment.comment.product.get_absoulut_url}}"> 
+                    <p dir="ltr" class="alert alert-primary">{{comment.body}}</p>
+
+                </a>
+            </div>
+        {% endfor %}
+        
+<hr>
+<hr>
+
+        <p>محصولاتی که برای شما ارسال شده است </p>
+        {% for tag in comments_tag %}
+        <div class="body-commet">
+            <a href="{{comment.comment.product.get_absoulut_url}}"> 
+                <p dir="ltr" class="alert alert-primary">{{tag.body}}</p>
+
+            </a>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="/static/accounts/js/notifications.js"></script>
+{% endblock %}

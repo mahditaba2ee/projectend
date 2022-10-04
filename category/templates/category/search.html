@@ -1,0 +1,126 @@
+
+{% extends 'base.html' %}
+{% load static%}
+{% load humanize %}
+{% block title %}
+    category
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'category/css/home.css'%}">
+
+
+
+{% endblock %}
+  
+{% block body %}
+<p id="message" class="alert alert-info messagebox" hidden ></p>
+
+
+
+<div class="container mt-5">
+
+
+
+ <section id="sec_pro" class="product-sec-now">
+
+    <div class="row">
+        <p class="sels"> </p>
+    
+
+
+
+
+{% for product in products %}
+
+    <div style="cursor: pointer;" class="box col-lg-3 col-md-4 col-sm-12 col-xs-12 mt-5">
+    
+            
+       <div class="shopping-cart">
+            <div class="img-sec">
+                {% for img in product.iproduct.all  %}
+                {% if forloop.first %}
+                    <img src="{{img.image.url}}" alt="">
+                {% endif %}
+            {% endfor %}
+
+                <span class="hot-affer">بیشنهاد ویژه</span>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                                          
+                </div>
+                
+            </div>
+            <div class="title">
+                <p>نام محصول</p>
+                <p>سازنده</p>    
+            
+            </div>
+            <div class="buttons">
+                <div class="right">
+                    <span class="price">قیمت{{product.id}}</span>
+                </div>
+                
+                <div  class="left">
+                    <div  class="extend-btn {% if product.id in buys %} active {% endif %} " data-id="{{product.id}}" data-status="{% if product.id in buys %}sell{% else %}buy{% endif %}" data-slug="{{product.slug}}" data-name="{{product.name}}" onclick="sendproduct(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <a> خریذ </a>
+                    </div>
+
+                   
+
+
+                    <div data-id="{{product.id}}" data-is_like="{% if request.user in product.like.all %}dis{% endif %}like" onclick="btn(this,'like')" 
+                    class="extend-btn {% if request.user in product.like.all %}active{% endif %} ">
+                        <i  class="fas fa-heart "></i>
+                        <a> لایک </a>
+
+                    </div>
+                    <div data-id="{{product.id}}" class="extend-btn  ">
+                        <i class="fa fa-ellipsis-h" ></i>
+                        <a href="{{product.get_absoulut_url}}">بیشتر </a>
+    
+                        </div>
+                    
+                </div>
+
+            </div>
+       </div>
+ 
+ 
+    
+
+
+    </div>
+
+    {% endfor %}
+     
+   
+
+
+
+
+
+
+</div>
+      
+
+
+  </div>
+
+
+ </section>
+
+
+{% endblock %}
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+<script src="{% static 'category/js/search.js'%}"></script>
+
+{% endblock %}

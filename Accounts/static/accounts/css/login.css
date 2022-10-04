@@ -1,0 +1,178 @@
+@keyframes slideLeft {
+	0% {
+		transform: translateX(150%);
+	}
+	50%{
+		transform: translateX(-8%);
+	}
+	65%{
+		transform: translateX(4%);
+	}
+	80%{
+		transform: translateX(-4%);
+	}
+	95%{
+		transform: translateX(2%);
+	}			
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: url('2.jg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+   
+
+}
+.box{
+    position: relative;
+    top: 50%;
+    width: 50%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0, 0, 0,.6);
+    padding: 50px;
+    border-radius: 15px;
+    animation: slideLeft;
+    animation-duration: 3s;
+    
+    
+}
+
+.box h1{
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.box .inputbox{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    position: relative;
+}
+.box .inputbox label{
+    position: absolute;
+    top: 0px;
+    left: 0;
+    font-size: 20px;
+    color: white;
+    z-index: 1;
+    transition: .5s;
+}
+.box .inputbox input{
+    width: 100%;
+    padding: 8px 0;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    margin-bottom: 15px;
+    color: white;
+    transition: .5s;
+    z-index: 2;
+    
+}
+textarea{
+    width: 100%;
+    padding: 8px 0;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    margin-bottom: 15px;
+    color: white;
+    transition: .5s;
+    z-index: 2;
+}
+.box .inputbox input:empty ~ label{
+    position: absolute;
+    top: 0px;
+    left: 0;
+    font-size: 20px;
+    color: white;
+    z-index: 1;
+    transition: .5s;
+}
+.box .inputbox input:invalid ~ label{
+    top: -10;
+    color: white;
+    font-size: 20px;
+}
+
+.box .inputbox input:valid ~ label,
+.box .inputbox input:focus ~ label,
+.box .inputbox textarea:valid ~ label,
+.box .inputbox textarea:focus ~ label{
+    top: -10px;
+    color: #03a9f4;
+    font-size: 16px;
+}
+.box .inputbox input:focus{
+     
+    border-bottom: 1px solid  #03a9f4;
+    ;
+
+}
+.box input[type='submit']{
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #03a9f4;
+    font-size: 10px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    align-items: center;
+    float: right;
+    cursor: pointer;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 30%;
+}
+.box input[type='button']{
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #03a9f4;
+    font-size: 10px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    align-items: center;
+    float: right;
+    cursor: pointer;
+    margin: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 30%;
+}
+a{
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+    align-items: center;
+    top: 20px;
+    
+}
+
+@media(max-width:776px){
+    .box{
+        width: 90%;
+    }
+
+    .box .inputbox input:empty ~ label{
+        font-size: 16px;
+    }
+}

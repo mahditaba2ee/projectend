@@ -1,0 +1,488 @@
+.messagebox{
+    position: fixed;
+    top: 20px;
+    
+    z-index: 100;
+    animation: slideLeft;
+    animation-duration: 2s;
+}
+
+.body-product{
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    width: 40%;
+    padding: 20px;;
+    bottom: 20px;
+    position: relative;
+}
+
+.body-main{
+    display: flex;
+    justify-content: space-between;
+    top: 70px;
+    position: relative;
+}
+
+
+.body-images{
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    width: 50%;
+    padding: 20px;;
+    height: 400px;
+    bottom: 20px;
+    position: relative;
+}
+
+
+
+
+.left{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+
+}
+
+.left .extend-btn{
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2ecc71;
+    width: 40px;
+    padding: 8px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: .2s;
+    color: white;
+    direction: rtl;
+    position: relative;
+    
+
+}
+.left .extend-btn:hover{
+    width: 75px;
+}
+.left .extend-btn:hover a{
+    display: block;
+}
+.left .extend-btn a{
+    display: none;
+    text-decoration: none;
+    font-family: tahoma;
+    color: white;
+    font-size: 14px;
+
+    
+    
+
+
+    }
+
+.share{
+    height: 200px;
+    width: 200px;
+   display: block;
+    position: absolute;
+    left: 40px;
+    
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    
+    top: 35px;
+}
+.share input{
+    width: 90%;
+    top: 10px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+    
+}
+.share img{
+    width: 25%;
+    height: 25%;
+    top: 10px;
+    position: relative;
+    float: left;
+    margin: 5px;
+    border-radius: 70px;
+
+    
+}
+
+.body-share{
+   height: auto;
+   display: block;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+
+}
+
+.share h5{
+z-index: 5;
+color: black;
+margin: 10px;
+float: left;
+}
+ .share h6{
+    color: rgb(102, 98, 98);
+   float: left;
+    margin-left: 70px;
+    margin-top: -5px;
+}
+
+.bodycomment{
+    align-items: center;
+    top: 500px;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    border-radius: 15px;
+    padding: 10px;
+}
+.replycomment{
+
+    width: 85%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:-50px;
+    word-wrap: break-word;
+    margin-top: 10px;
+    
+
+
+}
+
+#comment{
+    word-wrap: break-word;
+
+}
+
+.ranking-body {
+    
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20px;
+}
+.ranking-body .rankink-star {
+    padding: 35px;
+    width: 50%;
+    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.ranking-body .rankink-star .ranking{
+    direction: ltr;
+    height: 12px;
+    width: 100%;
+    position: relative;
+    background-color: #dddbdb;
+    margin-top:10px ;
+    border-radius: 20px;
+
+}
+.ranking-body .rankink-star .ranking label{
+    color: black;
+    
+    position: absolute;
+    left: -15px;
+    top: -8px;
+}
+
+.ranking-body .rankink-star .ranking .star-rankink{
+    width: 0%;
+    background-image: linear-gradient(to right, green 100%, white 0%);
+
+}
+
+.all-rankink{
+    width: 50%;
+    float: left;
+    height: 100%;
+    text-align: center;    
+    
+}
+.all-rankink h1{
+    font-size: 45px;
+    top: 30px;
+    position: relative;
+}
+.all-rankink .stars{
+    font-size: 16px;
+    top: 50px;
+    user-select: none;
+    position: relative;
+    display: inline-block;
+
+}
+.all-rankink .stars i{
+    color: black;
+    cursor: pointer;
+}
+.half{
+    color: yellow;
+   
+}
+
+.body-images .first-img img{
+    height: 260px;
+width: 100%;
+}
+.body-images .first-img{
+    width: 100%;
+    height: 250pxpx;
+}
+.body-images .next-img{
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+
+}
+.body-images .next-img img{
+    box-sizing: border-box;
+    position: relative;
+    top: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.body-comment{
+    width: 80%;
+    padding: 20px;
+    margin-top: 150px;
+    height: auto ;
+    max-height: 700px;
+    position: relative;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    overflow-x:auto;
+
+    
+}
+.body-comment .user-comment{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+
+.body-comment .user-comment a{
+    color:rgb(66, 65, 65);
+    font-size: 20px;
+
+}
+.body-comment .user-comment p{
+    font-size: 10px;
+}
+
+
+.reply{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.reply .like i{
+    color: white;
+    background-color: #2ecc71;
+    width: 40px;
+    padding: 8px 12px;
+    border-radius: 25px;
+    cursor: not-allowed;
+    color: white;
+}
+.body-comment .reply-body{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.body-comment .reply-body .user-comment a{
+    font-size: 16px;
+   
+
+}
+.sendcomment{
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   direction: ltr;
+   padding: 10px;
+   margin-top: 50px;
+   border-radius: 25px;
+   box-shadow: 0px 2px 8px 0px #3d3d3d;
+   margin-bottom: 20px;
+    
+}
+
+.sendcomment input{
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 100%;
+    
+}
+.sendcomment span{
+    background-color: #2ecc71;
+    padding: 8px;
+    border-radius: 25px;
+    margin-left: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.usernames{
+    height: 150px;
+    
+    width: 150px;
+    margin: 10px;
+    position: relative;
+    right: 35%;
+    top: -20px;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    direction: ltr;
+    overflow-y:scroll;
+    display: none;
+}
+.usernames p{
+    cursor: pointer;
+background-color: #2ecc71;
+border-radius: 25px;
+margin: 10px;
+top: 10px;
+font-size: 16px;
+text-align: center;
+padding: 5px;
+position: relative;
+}
+.product-like{
+    height: 500ox;
+    border: 1px solid rgb(54, 53, 53);
+    border-radius: 25px;
+    margin-bottom: 50px;
+    font-size: 50px;
+
+}
+
+.product-like .product-body{
+    height: 350px;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 25px;
+}
+.product-like .product-body a img{
+    height: 150px;
+    width: 100%;
+}
+.product-like .product-body p{
+    font-size: 16px;
+    direction: rtl;
+}
+.product-like .product-body .btn{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    direction: rtl;
+    border: 0px solid white;
+}
+.product-like .product-body .btn i{
+    color: white;
+    background-color: #2ecc71;
+    padding: 8px;
+    justify-content: center;
+    border-radius: 25px;
+}
+.product-like .product-body .btn i:hover{
+    cursor: pointer;
+}
+.product-like .product-body .btn:hover{
+    cursor: default;
+}
+.imgproduct{
+    display: none;
+}
+
+
+.left .active{
+    color: red;
+}
+.btn .extend-btn i.active{
+color: red;
+} 
+
+
+@media (max-width: 776px) {
+    .product-like .product-body p{
+        font-size: 14px;
+        
+    }
+    .body-product{
+        width: 100%;
+        margin-bottom: 20px;
+        position: relative;
+       
+        margin-top: 20px;
+    }
+    .body-images{
+        width: 80%;
+        margin-bottom: 20px;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+  }
+
+@media (max-width: 576px) {
+    .product-like .product-body p{
+        font-size: 16px;
+    }
+
+    
+ 
+  }
+@media (max-width: 476px) {
+    .product-like .product-body p{
+        font-size: 14px;
+        
+        
+    }
+    header nav .nav-left .login-register-btn {
+        left: 70px;
+    }
+    .container header nav .nav-right a i.fa-instagram{
+        display: none;
+        
+        
+    }
+  }
+@media (max-width: 348px) {
+    .container header nav .nav-right a i.fa-instagram{
+        display: none;
+        
+    }
+  }

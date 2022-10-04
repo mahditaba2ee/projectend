@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load humanize %}
+{% block title %}
+    category
+{% endblock %}
+
+  
+  
+{% block body %}
+<div class="container mt-5">
+    <div class="row mt-5">
+
+        <table dir="rtl" class="mt-5 table table-dark table-striped mt-2">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">نام</th>
+                <th scope="col">تعداد</th>
+                <th scope="col"> قیمت</th>
+                <th scope="col"> قیمت کل</th>
+                <th scope="col"></th>
+        
+                
+        
+        
+              </tr>
+            </thead>
+            <tbody>
+                {% for c in cart %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{c.product.name}} </td>
+                <td><input type="number" value="{{c.number}}" data-slug="{{c.product.slug}}" min="1" max="9" aria-selected="false" onchange="sendproduct(this)"></td>
+                <td>{{c.product.price|intcomma}}</td>
+                <td id="labal{{c.product.id}}"> {{c.total|intcomma}}</td>
+                <td><a href="">حدف</a></td>
+               
+                {% endfor %}
+        
+              </tr>
+              
+              <tr>
+                <td>قیمت کل</td>
+                
+                <td colspan="4"></td>
+                <td id="lable_total_price">{{cart.get_total|intcomma}}</td>
+                
+        
+        
+              </tr>
+             
+            </tbody>
+          </table>
+          <a class="btn btn-primary" href="{% url 'category:order'  %}">تایید ادامه و پرداخت</a>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block script %}
+
+
+<script src="{% static 'category/js/cart.js'%}"></script>
+
+{% endblock %}

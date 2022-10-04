@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block title %} addcategory{% endblock %}
+
+{% block css %}
+<link href="{% static 'category/css/category_search.css' %}" rel="stylesheet" >
+
+{% endblock %}
+
+{% block body %}
+<div class="body-page">
+    <p id="message" class="alert alert-info messagebox" hidden ></p>
+
+    {% for product in products %}
+
+    <div data-catslug="{{product.category.slug}}" onclick="details(this)" data-href="{{product.get_absoulut_url}}" data-brandslug="{{product.brand.slug}}" data-productslug="{{product.slug}}" class="box-product">
+        <div class="product-img">
+            {% for img in product.iproduct.all %}
+                {% if forloop.first %}
+                
+                    <img src="{{ img.image.url }}" alt="">
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="product-title">
+            <p>{{product.category}}</p>
+            <p>{{product.name}}</p>
+            <p>{{product.brand}}</p>
+            <p>{{product.price|intcomma:False}}</p>
+            <div  class="left">
+                <div  class="extend-btn {% if product.id in buys %} active {% endif %} " data-id="{{product.id}}" data-status="{% if product.id in buys %}sell{% else %}buy{% endif %}" data-slug="{{product.slug}}" data-name="{{product.name}}" onclick="sendproduct(this)">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a> خریذ </a>
+                </div>
+        
+               
+            </div>
+
+
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block script %}
+
+
+<script src="{% static 'category/js/category_search.js'%}"></script>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+<header>
+    <nav>
+        <div onclick=""  class="nav-right">
+            {% if user.is_authenticated %}
+                <a href="{% url 'accounts:profile' %}">
+                    <i class="fa fa-user night"></i>
+                    <i id="helptext" class="night">  بروفایل  </i>
+               </a>
+
+            {% endif %}
+          {% if categories %}
+            <a class="product active_nav">
+                 <i onclick="all_search()" id="list_nav"  class=" fa fa-list night"></i>
+                <i  class="night" id="helptext">  محصولات </i>
+                <div id="search-box" class="search-box">
+                    <div  class="row search-box-body">
+            {% for category in categories %}
+            <div class="box-search col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <h6 class="product-title-menu">{{category.name_category}}</h6>
+                    <ul>
+                        {% for typeproduct in category.type.all %}
+                            <li onclick="itemclick(this)" data-slug="{{typeproduct.slug}}">{{typeproduct.name}}</li>
+                        {% endfor %}
+    
+                    </ul>
+                </div>
+               {% endfor %}
+                
+                           
+                    
+                    </div>
+                </div>
+                
+            
+            </a>
+            {% endif %}
+           <a  href="{% url 'category:cart' %}">
+            
+             <i id="cart_nav" class="fa fa-shopping-cart night"></i>
+            <i class="night" id="helptext"> سبد </i>
+
+        </a>
+       
+
+           <a href="{% url 'category:category'%}"> <i id="home_nav" class="fa fa-home night"></i>
+            <i class="night" id="helptext"> فروشگاه </i>
+
+        </a>
+           <a id="searchbtn" class="searchbtn" > <i id="simple_search" onclick="searchclick()" class="fas fa-search search night">
+            
+
+        </i>
+        <i class="night" id="helptext"> جستجو </i>
+
+    </a>
+           <input  placeholder="جستجو بر اساس نام کالا"   class="inputsearch" id="inputsearch" type="text">
+           <span  id="btn-search" onclick="search()" style="display: none;" class="fas fa-search btn-search"></span>
+           <a class="nofifi" href="{% url 'accounts:notifications' %}">
+            <i class="fa fa-bell night " aria-hidden="true"></i>
+            <i id="helptext" class="night">اعلان </i>
+        </a>
+        {% if home %}
+         
+
+           <a class="night-mood"> <i data-mode="night" id="night_mode" onclick="night_mode_click(this)" class="fa fa-moon night"></i>
+            <i  class="night help_night"  id="helptext">  شب </i>
+        
+        </a>
+        {% if request.user.is_superuser%}
+        <a href="{% url 'accounts:company_verify' %}">
+            <i class="fa fa-building night" aria-hidden="true"></i>
+            <i id="helptext" class="night">شرکت </i>
+       </a>
+   
+    <a  href="{% url 'accounts:company' %}" class="hamkary"> 
+        <i class="fa fa-university" aria-hidden="true"></i>
+        <i class="night"  id="helptext">مشارکت</i>
+    
+    </a>
+
+       {% if request.user.is_admin %}
+       <a href="{% url 'category:addproduct'%}"> <i class="fa fa-add night"></i>
+        <i class="night" id="helptext"> افزودن </i>
+    
+    </a>
+    {% endif %}
+        {% endif %}
+      
+ 
+     
+</a>
+
+
+    
+      <!-- <span class="position-absolute top-10 start-0 translate-middle badge rounded-pill bg-danger">
+      {{lenorders}}
+        <span class="visually-hidden">unread messages</span>
+      </span> -->
+        </a>
+        </li>
+        {% endif %}
+    
+       
+
+
+
+        </div>
+        <div class="nav-left ">
+            
+            <div class="login-register-btn">
+                {% if user.is_authenticated == False %}
+                    <i onclick="btn_login()"   class="far fa-user night"></i>
+                    <a class="night"  href="{% url 'accounts:login' %}">ثبت نام/ ورود</a>
+                {% else %}
+                    <i onclick="btn_logout()"   class="fa fa-close night"></i>
+                    <a class="night"  href="{% url 'accounts:logout' %}"> خروج</a>
+                {% endif %}
+            </div>
+            
+            
+        </div>
+       
+       
+
+    </nav>
+    
+</header>
+<script>
+
+</script>

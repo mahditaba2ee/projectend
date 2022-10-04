@@ -1,0 +1,276 @@
+
+{% extends 'base.html' %}
+{% load static%}
+{% load humanize %}
+{% block title %}
+    category
+{% endblock %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'category/css/home.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+
+
+
+
+{% endblock %}
+  
+{% block body %}
+
+<p id="message" class="alert alert-info messagebox" hidden ></p>
+<section id="body_site">
+<section  class="slider">
+    <div   class="slids">
+
+       
+        <div class="item active" style="cursor: none" id="slid1">
+            
+             <img src="{{imageslide.image1.url}}" alt=""> 
+        </div>
+   
+        <div class="item " id="slid2">
+            <img src="{{imageslide.image2.url}}" alt=""> 
+
+        </div>
+
+        <div class="item " id="slid3">
+            <img src="{{imageslide.image3.url}}" alt=""> 
+
+        </div>
+
+    </div>
+
+    <div class="btns">
+
+           <i id="btn1" onclick="setslide('slid1',1)" class="fa fa-circle active"></i>
+           <i id="btn2" onclick="setslide('slid2',2)" class="fa fa-circle"></i> 
+           <i id="btn3" onclick="setslide('slid3',3)" class="fa fa-circle"></i>
+
+
+    </div>
+ </section>
+
+
+
+<div class="container">
+ <section id="sec_pro" class="product-sec-now">
+
+    <div class="row">
+        <p class="sels">مورد بسندترین</p>
+    
+
+
+
+
+{% for product in most_like_product %}
+
+    <div style="cursor: pointer;" class="box col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    
+            
+       <div class="shopping-cart">
+            <div class="img-sec">
+              
+                {% for img in product.iproduct.all  %}
+                    {% if forloop.first %}
+                        <img src="{{img.image.url}}" alt="">
+                    {% endif %}
+                {% endfor %}
+
+               
+
+                <span class="hot-affer">بیشنهاد ویژه</span>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                                          
+                </div>
+                
+            </div>
+            <div class="title">
+                <p>نام محصول</p>
+                <p>سازنده</p>    
+            
+            </div>
+            <div class="buttons">
+                <div class="right">
+                    <span class="price">قیمت{{product.id}}</span>
+                </div>
+                
+                <div  class="left">
+                    <div  class="extend-btn {% if product.id in buys %} active {% endif %} " data-id="{{product.id}}" data-status="{% if product.id in buys %}sell{% else %}buy{% endif %}" data-slug="{{product.slug}}" data-name="{{product.name}}" onclick="sendproduct(this)">
+                        <i class="fas fa-shopping-cart"></i>
+                        <a> خریذ </a>
+                    </div>
+
+                   
+
+
+                    <div data-id="{{product.id}}" data-is_like="{% if request.user in product.like.all %}dis{% endif %}like" onclick="btn(this,'like')" 
+                    class="extend-btn {% if request.user in product.like.all %}active{% endif %} ">
+                        <i  class="fas fa-heart "></i>
+                        <a> لایک </a>
+
+                    </div>
+                    
+                    <div data-id="{{product.id}}" class="extend-btn  ">
+                    <i class="fa fa-ellipsis-h" ></i>
+                    <a href="{{product.get_absoulut_url}}">بیشتر </a>
+
+                    </div>
+                
+                </div>
+
+                
+            </div>
+       </div>
+ 
+ 
+    
+
+
+    </div>
+
+    {% endfor %}
+     
+   
+
+
+
+
+
+
+</div>
+      
+
+
+  </div>
+
+
+ </section>
+
+
+<section style="display: none;" class="supper-offer-section">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="supper-offer-box">
+                <span class="title-hot">
+                    بیشنهاد شگفت انگیز
+                </span>
+              
+                <div  class="body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="image-container">
+                                <img src="{% static 'category/images/3.jpeg'%}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="spesification">
+                                <div class="price-row">
+                                    <div class="price">1 میلیون تومان</div>
+                                    <div class="off">60 درصد نخفیف</div>
+
+                                </div>
+                                <div class="title-offer">ست کامل لوازم ارایش </div>
+                                <div class="couter-down">
+                                    <span id="sec"></span> :
+                                    <span id="mini"></span>:
+                                    <span id="hours"></span>
+                                </div>
+                                <div class="remaning-time">زمان باقی مانده </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="banner">
+                <img src="{% static 'category/images/2.jpg'%}" alt="">
+            </div>
+        </div>
+    </div>   
+</section>
+
+
+
+<div class="container">
+    <section class="category-section">
+    <p>دسته بندی محصولات</p>
+    
+    <div class="row">
+        {% for type_category in categories %}
+        <div class="category-box  col-lg-2 col-md-4 col-xs-12 col-sm-6 {% if type_category.available == False %} notavailable{% endif %}" >
+
+            <div class="part">
+                <img src="{{type_category.img.url}}" alt="">
+                {% if type_category.available == False %}
+                    <span class="note">بزودی</span>
+                {% endif %}
+            </div>
+            <a href="{{ type_category.get_absoulut_url }}"><span class="part">{{type_category.name_category}}</span></a>
+
+        
+        </div>
+        {% endfor %}
+        
+       
+       
+    </div>
+        
+</div>
+</section>
+
+
+
+<footer class="main-foter">
+    <div class="body">
+        <div class="one">
+
+            <p class="title-foter"> درباره ما</p>
+            <p class="why-us"> های روز جهان آشنا کند . شرکت برنس از تک تک شما دوستان دعوت به همکاری می نمایهای روز جهان آشنا کند . شرکت برنس از تک تک شما دوستان دعوت به همکاری می نمایشرکت برنس مفتخر است که شما را با بهترین کالاهای روز جهان آشنا کند . شرکت برنس از تک تک شما دوستانهای روز جهان آشنا کند . شرکت برنس از تک تک شما دوستان دعوت به همکاری می نمایهای روز جهان آشنا کند . شرکت برنس از تک تک شما دوستان دعوت به همکاری می نمای دعوت به همکاری می نماید </p>
+        </div> 
+        <div class="two">
+            <p class="title-foter">  راه های ارتباطی:</p>
+            <p class="title-foter"><a href="" dir="ltr" class="fa fa-phone"> 09134303981 </a></p>
+            <p class="title-foter"><a href="https:/www.instagram.com/mahdi_tabatabaee_" dir="ltr" class="fa fa-camera"> mahdi_tabatabaee_ </a></p>
+            <p class="title-foter"><a href="" dir="ltr" class="fa fa-space-shuttle"> 09134303981 </a></p>
+            <p class="title-foter"><a href="" dir="ltr" class="fa fa-phone"> 09134303981 </a></p>
+
+        </div>
+        <div class="four">
+            <div class="row">
+                <div class=" box-img col-lg-6">
+                    <img src="{% static 'category/images/1.jpeg' %}" alt="">
+                </div>
+                <div class="box-img col-lg-6">
+                    <img src="{% static 'category/images/asalat.jpeg' %}" alt="">
+                </div>
+            </div>
+            
+
+        </div>
+
+    </div>
+</footer>
+
+
+
+<script src="{% static 'category/js/jquery.min.js' %}" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="{% static 'category/js/owl.carousel.min.js' %}" ></script>
+<script src="{% static 'category/js/homes.js'%}"></script>
+
+</section>
+{% endblock %}
+{% block script %}
+
+
+
+{% endblock %}

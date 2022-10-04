@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="" 
+{% endblock %}
+{% block title %}
+    verify code 
+{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+      
+        <form method="post" action="" class="col-md-4 bg-dark mt-2 mx-auto">
+         
+            <label for="exampleInputPassword1" class="form-text mb-2">شماره :{{phone}}</label>
+            <label for="exampleInputPassword1" class="form-text mb-2">ایمیل :{{email}}</label>
+            
+            <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-text mb-2">کد تایید :</label>
+            <input type="text" class="form-control" dir="ltr" placeholder="12345" name="code" id="exampleInputPassword1">
+            </div>
+           
+            {% csrf_token %}
+                
+                    <div class="mx-auto m-2 col-md-12 text-center" >
+                     <button type="submit"  class="col-md-12 btn btn-secondary mb-2">تایید</button>
+                  
+                    
+                 
+                  
+                    <a class="col-md-12 btn btn-light" href="#">بازگشت</a>
+                  
+           
+        </form>
+    </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+<script>
+    var button = document.getElementById('register')
+    button.classList.add('active')
+</script>
+{% endblock %}

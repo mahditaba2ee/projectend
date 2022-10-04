@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} addcategory{% endblock %}
+
+{% block css %}
+<link href="{% static 'category/css/add_category.css' %}" rel="stylesheet" >
+
+{% endblock %}
+
+{% block body %}
+    <form class="frm" method="post" action="" enctype="multipart/form-data">
+        <div class="input-box">
+            <input id="name" onchange="change_name(value)" name="name" required type="text">
+            <label for="s">نام کالا</label>
+
+        </div>
+        <div class="input-box">
+            <input  id="link" required name="slug" type="text">
+            <label for="s">لینک</label>
+
+        </div>
+        <div  class="input-box">
+            <input name="img" required type="file">
+        </div>
+    
+        <div   class="input-box box-check">
+            <div class="form-check form-switch box">
+                <input class="form-check-input check-input" type="checkbox" name="avalable" id="flexSwitchCheckChecked" checked>
+                <label  >در دسترس</label>
+              </div>
+
+
+        </div>
+    
+    
+    
+        <div  class="input-box btn">
+            <input value="ثبت"  type="submit">
+            <input value="ثبت و ادامه" type="submit">
+
+        </div>
+        {% csrf_token %}
+        
+
+
+    </form>
+  
+{% endblock %}
+{% block script %}
+
+
+<script src="{% static 'category/js/add_category.js'%}"></script>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+    category
+{% endblock %}
+
+  
+  
+{% block body %}
+
+
+
+<div style="direction: ltr;  ">
+    {% for type in category %}
+         <div  dir="ltr" class="btn-group">
+            <a href="{% url 'category:search' type.slug %}" class="btn btn-danger ">{{type}}</a>
+            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+           
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+             {% for t in type.cbrand.all %}
+             
+              
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+        
+        
+          
+          
+
+ <div class="container">
+    <div class="row">
+       
+    
+          
+         
+         
+
+
+        <p id="message" class="alert alert-info" hidden ></p>
+    {% for product in products %}
+        
+        <div class="card m-2" style="width: 18rem;">
+            
+        {% for image in images %}
+                {% if image.product == product %}
+               
+                    <img src="{{image.image.url}}"  class="mt-1 card-img-top" alt="...">
+                
+                    {% endif %}
+        {% endfor %}
+            
+            
+            <div class="card-body">
+            <h5 class="card-title text-center">{{product.name}}</h5>
+            <p dir="rtl" class="card-text text-center">توضیحات: {{product.des}}</p>
+            <p class="card-text text-center"> قیمت:{{product.price|intcomma}}</p>
+            <p class="card-text text-center"> :{{product.slug}}</p>
+        
+        </div>
+            <div class="text-center mb-2">
+                <a data-slug="{{product.slug}}" data-name="{{product.name}}" onclick="sendproduct(this)" id="name" class="btn btn-primary col-md-9 mb-2">افزودن به سبد خرید</a>
+
+                <a href="{{product.get_absoulut_url}}" class="btn btn-primary col-md-4 ">جزییات</a>
+                <a  data-id="{{product.id}}" class="btn btn-primary col-md-5 " data-is_like="{% if request.user in product.like.all %}dislike{% else %}like{% endif %}" onclick="likeproduct(this)">{% if request.user in product.like.all %}دوست ندارم{% else %}‍‍دوست دارم{% endif %}</a>
+                <p id="{{product.id}}" class="card-text"> {{product.get_like_user}}</p>
+        
+            </div>
+            
+        </div>
+        
+    
+    {% endfor %} 
+{% endblock %}
+    </div>
+</div>
+
+
+{% block script %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/category/js/list_category.js"></script>
+
+{% endblock %}

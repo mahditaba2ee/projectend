@@ -1,0 +1,88 @@
+.body-page{
+    position: relative;
+    top: 100px;
+}
+
+
+.box-product{
+    height: 220px;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    display: flex;
+    justify-content: space-between;
+    direction: ltr;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.box-product .product-img{
+    height: 100%;
+    padding: 10px;
+    width: 40%;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+
+}
+.box-product .product-img img{
+    width: 100%;
+    height: 100%;
+}
+.box-product .product-title{
+    width: 50%;
+    direction: rtl;
+    padding: 10px;
+}
+
+left{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+
+}
+
+.left .extend-btn{
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2ecc71;
+    width: 40px;
+    padding: 8px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: .2s;
+    color: white;
+    direction: rtl;
+    position: relative;
+    
+
+}
+.left .extend-btn:hover{
+    width: 75px;
+}
+.left .extend-btn:hover a{
+    display: block;
+}
+.left .extend-btn a{
+    display: none;
+    text-decoration: none;
+    font-family: tahoma;
+    color: white;
+    font-size: 14px;
+
+    
+    
+
+
+    }
+.left .active{
+        color: red;
+    }
+
+    .messagebox{
+        position: fixed;
+        top: 20px;
+        
+        z-index: 100;
+        animation: slideLeft;
+        animation-duration: 2s;
+    }

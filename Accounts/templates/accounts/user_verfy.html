@@ -1,0 +1,25 @@
+<h1>ثبت کد </h1>
+{% if messages %}
+    {% for msg in messages %}
+        <p id="message" class="alert alert-{{msg.tags}}">{{msg}}</p>
+    {% endfor %}
+{% endif%}
+<form action="{% url 'accounts:verifycode' %}" method="post">
+    <label for="exampleInputPassword1" class="form-text mb-2">شماره :{{phone}}</label>
+    <label for="exampleInputPassword1" class="form-text mb-2">ایمیل :{{email}}</label>
+
+    <div class="inputbox"  >
+        <input dir="ltr"  name="code" id="code"  type="text" required  >
+        <label  for="">کد تایید</label>
+    </div>
+    
+    {% csrf_token %}
+
+    
+    </div>
+        <div class="check" style="width: 100%; height: auto;">
+        <input type="button" onclick="verifycodelogin()" value="ثبت ">
+
+</div>
+
+</form>

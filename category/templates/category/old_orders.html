@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    category
+{% endblock %}
+
+  
+  
+{% block body %}
+<div class="container">
+    <div class="row">
+{% for order in orders %}
+       
+        <table dir="rtl" class=" mt-2 table table-dark table-striped">
+
+            <thead>
+              <tr>
+                <th scope="col">{{order.user}}</th>
+                <th scope="col">نام محصول</th>
+                <th scope="col">تعداد</th>
+                <th scope="col"> قیمت</th>
+                <th scope="col"> قیمت کل</th>
+                <th scope="col">
+
+                    {% if order.paid %}
+                    <h6 style="color: red;" >پرداخت نشده</h6>
+                    {% else %}
+                    <h6 >پرداخت شده</h6>
+
+                    {% endif %}
+                </th>
+        
+                
+        
+        
+              </tr>
+            </thead>
+            <tbody>
+                {% for product in order.oitems.all %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{product.product.name}} </td>
+                <td>{{product.number}}</td>
+                <td>{{product.price}}</td>
+                <td> {{product.get_cost}}</td>
+                <td><a href="">حدف</a></td>
+               
+                {% endfor %}
+        
+              </tr>
+              
+              <tr>
+                <td>قیمت کل</td>
+              
+                <td colspan="3"></td>
+                <td>{{order.total_price}}</td>
+                <td> <input  id="check" data-id="{{order.id}}" value="0" {% if order.view %}checked  {% endif %} onchange="checkbox(this)" class="form-check-input mt-1" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-text " >تایید</label><input</td>
+
+                
+                
+        
+        
+              </tr>
+              
+             
+            </tbody>
+          </table>
+         
+{% endfor %}
+
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/static/category/js/send_order.js"></script>
+{% endblock %}

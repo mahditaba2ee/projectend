@@ -1,0 +1,51 @@
+<h1>ثبت نام</h1>
+{% if messages %}
+    {% for msg in messages %}
+        <p class="alert alert-{{msg.tags}}">{{msg}}</p>
+    {% endfor %}
+{% endif%}
+<form action="{% url 'accounts:register' %}" method="post">
+    <div class="inputbox"  >
+        <input dir="ltr"  name="email" id="email"  type="email" required  >
+        <label  for="">email</label>
+    </div>
+    {% for err in form.errors %}
+    {% if err == 'email'%}
+        <p class="form-text mb-2">ایمیل مشکل دارد یا وارد نشده است</p>
+    {% endif %}
+    {% endfor %}
+
+    <div class="inputbox"  >
+        <input onchange="usernamechange(this)" dir="ltr"  name="username" id="username"  type="text" required  >
+        <label  for=""> username</label>
+    </div>
+    <div id="usernamehelp" class="form-text">نام کاربری باید متشکل از 5 حرف لاتین باشد </div>
+
+    <div class="inputbox"  >
+        <input onchange="phonechanche(this)" dir="ltr"  name="phone" id="phone"  type="text" required  >
+        <label  for=""> phone</label>
+    </div>
+    <div id="phonehelp" class="form-text">شماره را به صورت 09121234567 وارد نمایید</div>
+
+    
+    <div class="inputbox">
+        <input dir="ltr" name="password1" id="password1" type="password" required>
+        <label for="">password</label>
+    </div>
+    <div class="inputbox">
+        <input dir="ltr" name="password2" id="password2" type="password" required>
+        <label for="">password2</label>
+    </div>
+    {% csrf_token %}
+
+    <div class="check" style="width: 100%;">
+        <input  id="check" value="0"  onchange="checkbox()" class="form-check-input mt-1 mb-2" type="checkbox" value="0" id="flexCheckDefault">
+        <label class="form-text " >show password</label>
+    </div>
+<div class="check" style="width: 100%; height: auto;">
+        <input type="button" onclick="sighon(this)" value="ثبت نام">
+        <a onclick="register()" class="mt-1 btn btn-primary " > ورود </a>
+
+</div>
+
+</form>

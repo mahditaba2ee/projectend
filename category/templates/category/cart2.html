@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load humanize %}
+{% block title %}
+    category
+{% endblock %}
+
+  
+{% block css %}
+<link href="{% static 'category/css/cart.css' %}" rel="stylesheet" >
+
+{% endblock %}
+{% block body %}
+<section class="sec-tbl" >
+    <!--for demo wrap-->
+    <h1 >سبد خرید شما</h1>
+    <div class="tbl-header mt-5">
+      <table  cellpadding="0" cellspacing="0" border="0">
+        <thead >
+          <tr >
+            
+            <th>نام کالا</th>
+            <th>قیمت</th>
+            <th>تعداد</th>
+            <th> کل </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table dir="rtl" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            {% for c in cart %}
+          <tr>
+            <td>{{c.product.name}}  <strong><a href="#"> حذف</a></strong> </td>
+            <td >{{c.product.price|intcomma:False}}</td>
+            <td><input class="form-control number-input" type="number" value="{{c.number}}" data-slug="{{c.product.slug}}" min="1" max="9" aria-selected="false" onchange="sendproduct(this)"></td>
+            <td id="labal{{c.product.id}}">{{c.total|intcomma:False}} </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td>قیمت کل</td>
+            
+            <td colspan="2"></td>
+            <td id="lable_total_price">{{cart.get_total|intcomma:False}}</td>
+            
+    
+    
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <a  class="btn btn-primary sub" href="{% url 'category:order'  %}">تایید ادامه و پرداخت</a>
+
+  </section>
+  <div class="spinner-grow" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+  
+  <!-- follow me template -->
+  <div class="made-with-love">
+    Made with
+    <i>♥</i> by
+    <a target="_blank" href="https://codepen.io/nikhil8krishnan">nice biauty</a>
+  </div>
+
+
+
+{% endblock %}
+
+
+
+
+{% block script %}
+
+
+<script src="{% static 'category/js/cart.js'%}"></script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

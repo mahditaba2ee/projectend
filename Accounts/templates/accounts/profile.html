@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css'%}" >
+{% endblock %}
+{% block title %}
+    user login
+{% endblock %}
+{% block body %}
+
+      
+        <div class="box" style="top: 100px; " id="box-form">
+            <h1>بروفایل</h1>
+            <form accept="" method="post">
+                <div class="inputbox"  >
+                    <input dir="ltr" value="{{request.user.email}}"  name="email" id="email"  type="email" required  >
+                    <label  for="">ایمیل</label>
+                </div>
+               
+            
+                <div class="inputbox"  >
+                    <input value="{{user.username}}" onchange="usernamechange(this)" dir="ltr"  name="username" id="username"  type="text" required  >
+                    <label  for=""> نام کاربری</label>
+                </div>
+
+                <div class="inputbox"  >
+                    <input value="{{user.phone}}" onchange="phonechanche(this)" dir="ltr"  name="phone" id="phone"  type="text" required  >
+                    <label  for=""> شماره</label>
+                </div>
+            
+                
+                <div class="inputbox">
+                    <input dir="ltr" value="{{user.name}}" name="name" id="name" type="text" required>
+                    <label for="">نام</label>
+                </div>
+                <div class="inputbox">
+                    <input value="{{user.family}}" dir="ltr" name="family" id="family" type="text" required>
+                    <label for="">نام خانوادگی</label>
+                </div>
+                <div class="inputbox">
+                    <textarea dir="ltr" name="address" id="address" type="textarea"  required rows="3"> {{user.address}}</textarea>
+                    <label for=""> ادرس</label>
+                </div>
+                {% csrf_token %}
+            
+                <div class="check" style="width: 100%;">
+                    <input  id="check" value="0"  onchange="checkbox()" class="form-check-input mt-1 mb-2" type="checkbox" value="0" id="flexCheckDefault">
+                    <label class="form-text " >show password</label>
+                </div>
+            <div class="check" style="width: 100%; height: auto;">
+                    <input type="submit" value="ثبت اطلاعات">
+            
+            </div>
+            
+            </form>
+        </div>
+{% endblock %}
+
+{% block script %}
+
+
+
+
+<script src="/static/accounts/js/login.js">
+
+   
+</script>
+<script>
+ 
+    
+        
+    
+</script>
+
+   
+
+
+{% endblock %}
+
+
+
+
+
